@@ -1,0 +1,31 @@
+1. open ubantu>> terminal >> 
+2. su hdoop >> enter password 
+3. cd ..
+4. cd ..
+5. cd hdoop
+6. sudo nano input.txt >> enter >> give password 
+7. type sentence (She Sells seahells on The shells she sells are seashells)>>save
+8. sudo nano wordcount.py >> enter
+9. 
+from pyspark.sql import SparkSession
+
+spark=SparkSession.builder.appName("WordCount").getOrCreate()
+
+text_data =spark.read.text("/home/hdoop/input.txt")
+
+from pyspark.sql.functions import split, explode
+
+words = text_data.select(explode(split(text_data.value, " ")).alias("word"))
+word_counts = words.groupBy("word").count()
+
+word_counts.show()
+
+word_counts.write.csv("/home/hdoop/word_count_results.csv")
+
+spark.stop()
+
+10. save this code 
+11. spark-submit wordcount.py
+
+
+ 

@@ -1,0 +1,20 @@
+1)su hdoop
+2)cd usr/local/hdoop/hadoop-3.2.4
+3)mkdir hbasenew
+4)cd hbasenew
+5)sudo wget
+https://downloads.apache.org/hbase/2.5.5/hbase-2.5.5-bin.tar.gz
+6)sudo tar -xzvf hbase-2.5.5-bin.tar.gz
+7)sudo mv * /opt/hbasenew
+8)cd opt/hbasenew
+9)nano ~/. bashrc
+10)export HBASE_HOME=/opt/hbasenew
+    export PATH=/$PATH:/$HBASE_HOME/bin
+11)source ~/. bashrc
+12)sudo mkdir /opt/hbase/data
+13)sudo nano $HBASE_HOME/conf/hbase-site.xml
+14)<property>
+<name>hbase.zookeeper.property.dataDir</name>
+<value>/opt/hbase/data</value>
+</property>
+15)start-hbase.sh
